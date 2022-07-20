@@ -1,0 +1,53 @@
+---
+title: "2nd_task"
+output: html_document
+date: '2022-07-19'
+---
+
+```{r analysis, results='markup'}
+library(coda)
+library("rjags")
+set.seed(12345)
+N <-3 #number of subgroups by age 
+
+age <- c(1,2,3) #where 1 = 16-64, 2= 65-74, 3 = 75 and older
+
+#df <- data.frame(eff, age)
+#df
+#jagsdata <- with(df, list(eff = eff,age = age))
+
+model_vaccine <- "model{
+nP.I ~ dbin(pA, nP)         
+nV.A ~ dbin(pA, nV) 
+nV.I ~ dbin(prob, nV.A)     
+
+# Priors of nodes with no parents 
+pA ~ dbeta(1,1) 
+prob ~ dbeta(1,1) 
+
+epsilon <- 1 - prob         
+}"
+#pfizer
+nvI.pf <-c(7,1,0)  
+nv.pf <-c(13549,3074,774)
+nPI.pf <-c(143,14,5)
+nP.pf<-c(13618,3095,785)
+ 
+#janssen
+nvI.jc <-c(60,6,0)
+nv.jc<-c(2518,477,106)
+nPI.jc <- c(170,20,3)
+nP.jc <- c(2490,482,98)
+
+#moderna
+nvI.md <- c(7,4,0)
+nv.md <- c(2875,5586,0)
+npI.md <- c(156,22,7)
+np.md <- c(64625,31744,41968)
+```
+
+
+
+
+
+
