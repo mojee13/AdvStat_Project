@@ -1,4 +1,4 @@
-# AdvStat_Project
+# AdvStat_Project in R
 
 This projects aims to analyze the efficacy of different vaccines and perform a bayesian analysis of the data. 
 
